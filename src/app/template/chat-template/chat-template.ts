@@ -34,11 +34,4 @@ export class ChatTemplate {
   handleMessage(text: string) {
     console.log('OrthographyPage received message:', text);
   }
-/*   handleMessageWithFile(text: TextMessageEvent) {
-    console.log('OrthographyPage received message:', text);
-  }
-
-  handleMessageWithSelect(text: any) {
-    console.log('OrthographyPage received message:', text);
-  } */
 }
