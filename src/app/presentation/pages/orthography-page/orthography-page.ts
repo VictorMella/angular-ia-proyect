@@ -9,7 +9,7 @@ import {
 } from '../../components/textBoxes/text-message-file/text-message-file';
 import { TextMessageBoxSelect } from '../../components/textBoxes/text-message-box-select/text-message-box-select';
 import { OpenIaService } from '../../../services/openia.service';
-import { Message } from '../../../interfaces';
+import { IMessage } from '../../../interfaces';
 import { finalize } from 'rxjs';
 import { GptMessageOrthography } from '../../components/chatBubble/gpt-message-orthography/gpt-message-orthography';
 
@@ -25,7 +25,7 @@ import { GptMessageOrthography } from '../../components/chatBubble/gpt-message-o
   templateUrl: './orthography-page.html',
 })
 export default class OrthographyPage {
-  public messages = signal<Message[]>([]);
+  public messages = signal<IMessage[]>([]);
   public isLoading = signal<boolean>(false);
 
   public openIaService = inject(OpenIaService);
@@ -45,7 +45,6 @@ export default class OrthographyPage {
             info: resp,
           },
         ]);
-        console.log({ resp });
       });
   }
 }

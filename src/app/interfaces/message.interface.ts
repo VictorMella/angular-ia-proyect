@@ -1,4 +1,4 @@
-export interface Message {
+export interface IMessage {
   text: string
   isGpt: boolean;
   info?: {

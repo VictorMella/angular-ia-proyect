@@ -8,7 +8,7 @@ import { MyMessage } from '../../presentation/components/chatBubble/my-message/m
 import { TextMessageBoxSelect } from '../../presentation/components/textBoxes/text-message-box-select/text-message-box-select';
 import { TextMessageBox } from '../../presentation/components/textBoxes/text-message-box/text-message-box';
 import { TypingLoader } from '../../presentation/components/typing-loader/typing-loader';
-import { Message } from '../../interfaces/message.interface';
+import { IMessage } from '../../interfaces/message.interface';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -25,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './chat-template.html'
 })
 export class ChatTemplate {
-  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: false }]);
+  public messages = signal<IMessage[]>([{ text: 'Hola Mundo', isGpt: false }]);
   public isLoading = signal<boolean>(false);
 
   public openIaService = inject(OpenIaService);
