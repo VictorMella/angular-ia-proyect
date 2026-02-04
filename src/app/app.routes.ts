@@ -18,7 +18,7 @@ export const routes: Routes = [
       {
         path: 'pros-cons',
         loadComponent: () =>
-          import('./presentation/pages/pros-cons-stream-page/pros-cons-stream-page'),
+          import('./presentation/pages/pros-cons-page/pros-cons-page'),
         data: {
           icon: 'fa-solid fa-code-compare',
           title: 'Pros & Cons',
