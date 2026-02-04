@@ -8,8 +8,9 @@ import {
   TextMessageFile,
 } from '../../components/textBoxes/text-message-file/text-message-file';
 import { TextMessageBoxSelect } from '../../components/textBoxes/text-message-box-select/text-message-box-select';
-import { Message } from '../../../interfaces/message.interface';
 import { OpenIaService } from '../../../services/openia.service';
+import { Message } from '../../../interfaces';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-orthography-page',
@@ -21,23 +22,30 @@ import { OpenIaService } from '../../../services/openia.service';
     TextMessageFile,
     TextMessageBoxSelect,
   ],
-  templateUrl: './orthography-page.html',
-  styleUrl: './orthography-page.css',
+  templateUrl: './orthography-page.html'
 })
 export default class OrthographyPage {
-  public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: false }]);
+  public messages = signal<Message[]>([]);
   public isLoading = signal<boolean>(false);
 
   public openIaService = inject(OpenIaService);
 
   handleMessage(text: string) {
-    console.log('OrthographyPage received message:', text);
-  }
-  handleMessageWithFile(text: TextMessageEvent) {
-    console.log('OrthographyPage received message:', text);
-  }
-
-  handleMessageWithSelect(text: any) {
-    console.log('OrthographyPage received message:', text);
+    this.isLoading.set(true);
+    this.messages.update((messages) => [...messages, { text, isGpt: false }]);
+    this.openIaService
+      .checkOrthography(text)
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe((resp) => {
+        this.messages.update((messages) => [
+          ...messages,
+          {
+            text: resp.message,
+            isGpt: true,
+            info: resp,
+          },
+        ]);
+        console.log({ resp });
+      });
   }
 }

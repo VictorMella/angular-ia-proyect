@@ -9,27 +9,14 @@
           <app-my-message [text]="message.text"></app-my-message>
         }
       }
-      <!--
-      <app-my-message text="I'm good, thanks!"></app-my-message> -->
+
       @if (isLoading()) {
         <app-typing-loader></app-typing-loader>
       }
     </div>
   </div>
-  <!--   <app-text-message-box
+  <app-text-message-box
     [placeholder]="'Ingresa tu búsqueda acá!!!'"
     (onMessage)="handleMessage($event)"
-    ></app-text-message-box> -->
-  <!--   <app-text-message-file
-    [placeholder]="'Ingresa tu búsqueda acá!!!'"
-    (onMessage)="handleMessageWithFile($event)"
-  ></app-text-message-file> -->
-  <app-text-message-box-select
-    [placeholder]="'Ingresa tu búsqueda acá!!!'"
-    [options]="[
-      { id: '1', text: 'Uno' },
-      { id: '2', text: 'Dos' },
-    ]"
-    (onMessage)="handleMessageWithSelect($event)"
-  />
+  ></app-text-message-box>
 </div>

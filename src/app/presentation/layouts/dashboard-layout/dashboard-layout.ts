@@ -7,8 +7,7 @@ import { routes } from '../../../app.routes';
 @Component({
   selector: 'app-dashboard-layout',
   imports: [CommonModule, RouterOutlet, SidebarMenuItem],
-  templateUrl: './dashboard-layout.html',
-  styleUrl: './dashboard-layout.css',
+  templateUrl: './dashboard-layout.html'
 })
 export class DashboardLayout {
   public routes = routes[0].children?.filter((route) => route.data);

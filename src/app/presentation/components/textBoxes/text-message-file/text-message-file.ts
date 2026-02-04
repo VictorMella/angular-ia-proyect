@@ -10,8 +10,7 @@ export interface TextMessageEvent {
 @Component({
   selector: 'app-text-message-file',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './text-message-file.html',
-  styleUrl: './text-message-file.css',
+  templateUrl: './text-message-file.html'
 })
 export class TextMessageFile {
   placeholder = input.required<string>();

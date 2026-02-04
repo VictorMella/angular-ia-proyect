@@ -22,8 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TextMessageBox,
 
   ],
-  templateUrl: './chat-template.html',
-  styleUrl: './chat-template.css',
+  templateUrl: './chat-template.html'
 })
 export class ChatTemplate {
   public messages = signal<Message[]>([{ text: 'Hola Mundo', isGpt: false }]);

@@ -15,8 +15,7 @@ export interface TextMessageBoxEvent {
 @Component({
   selector: 'app-text-message-box-select',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './text-message-box-select.html',
-  styleUrl: './text-message-box-select.css',
+  templateUrl: './text-message-box-select.html'
 })
 export class TextMessageBoxSelect {
   placeholder = input.required<string>();
