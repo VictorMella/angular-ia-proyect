@@ -4,7 +4,11 @@
       <app-chat-message text="Hello, how are you?"></app-chat-message>
       @for (message of messages(); track $index) {
         @if (message.isGpt) {
-          <app-chat-message [text]="message.text"></app-chat-message>
+          <app-gpt-message-orthography
+            [text]="message.text"
+            [userScore]="message.info!.userScore"
+            [errors]="message.info!.errors"
+          ></app-gpt-message-orthography>
         } @else {
           <app-my-message [text]="message.text"></app-my-message>
         }
@@ -18,5 +22,6 @@
   <app-text-message-box
     [placeholder]="'Ingresa tu búsqueda acá!!!'"
     (onMessage)="handleMessage($event)"
+    [disableCorrections]="true"
   ></app-text-message-box>
 </div>

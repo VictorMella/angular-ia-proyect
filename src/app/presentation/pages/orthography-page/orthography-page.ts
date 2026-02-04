@@ -11,6 +11,7 @@ import { TextMessageBoxSelect } from '../../components/textBoxes/text-message-bo
 import { OpenIaService } from '../../../services/openia.service';
 import { Message } from '../../../interfaces';
 import { finalize } from 'rxjs';
+import { GptMessageOrthography } from '../../components/chatBubble/gpt-message-orthography/gpt-message-orthography';
 
 @Component({
   selector: 'app-orthography-page',
@@ -19,10 +20,9 @@ import { finalize } from 'rxjs';
     MyMessage,
     TypingLoader,
     TextMessageBox,
-    TextMessageFile,
-    TextMessageBoxSelect,
+    GptMessageOrthography,
   ],
-  templateUrl: './orthography-page.html'
+  templateUrl: './orthography-page.html',
 })
 export default class OrthographyPage {
   public messages = signal<Message[]>([]);
