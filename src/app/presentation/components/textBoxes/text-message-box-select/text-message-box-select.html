@@ -1,45 +1,33 @@
 <form
   [formGroup]="form"
   (ngSubmit)="handleSubmit()"
-  class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+  class="flex flex-wrap items-center gap-3 rounded-xl bg-white w-full px-4 py-3"
 >
 
-  <div class="flex-grow">
-    <div class="flex">
+  <input
+    type="text"
+    autofocus
+    class="flex-1 min-w-[200px] border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 px-4 h-10"
+    [placeholder]="placeholder()"
+    formControlName="prompt"
+  />
 
-      <input
-        type="text"
-        autofocus
-        class="flex w-full border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10"
-        [placeholder]="placeholder()"
-        formControlName="prompt"
-      />
+  <select
+    formControlName="selectedOption"
+    class="flex-1 min-w-[180px] border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 px-4 h-10">
+    <option value="">Seleccione</option>
+    @for (option of options(); track option.id) {
+      <option [value]="option.id">{{ option.text }}</option>
+    }
+  </select>
 
-      <select
-        formControlName="selectedOption"
-        class="w-2/5 ml-5 border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10">
-        <option value="">Seleccione</option>
-        @for (option of options(); track option.id) {
-          <option [value]="option.id">{{ option.text }}</option>
-        }
-
-      </select>
-
-
-
-    </div>
-  </div>
-
-  <div class="ml-4">
-    <button
-      class="btn-primary"
-      type="submit"
-      [disabled]="form.invalid"
-    >
-      <span class="mr-2">Enviar</span>
-      <i class="fa-regular fa-paper-plane"></i>
-    </button>
-  </div>
-
+  <button
+    class="btn-primary flex-shrink-0"
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    <span class="mr-2">Enviar</span>
+    <i class="fa-regular fa-paper-plane"></i>
+  </button>
 
 </form>
