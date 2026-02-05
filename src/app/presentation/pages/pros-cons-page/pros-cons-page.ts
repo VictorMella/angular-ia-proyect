@@ -32,7 +32,7 @@ export default class ProsConsPage {
     this.isLoading.set(true);
     this.messages.update((messages) => [...messages, { text, isGpt: false }]);
     this.openIaService
-      .checkProsCons(text)
+      .prosConsDiscusser(text)
       .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe((resp) => {
         this.messages.update((messages) => [

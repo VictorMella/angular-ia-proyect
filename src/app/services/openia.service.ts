@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { orthographyUseCase } from '../core/use-cases';
+import { orthographyUseCase, prosConsStreamUseCase, prosConsUseCase } from '../core/use-cases';
 import { from } from 'rxjs';
-import { prosConsUseCase } from '../core/use-cases/pros-cons/pros-cons.use-case';
 
 @Injectable({ providedIn: 'root' })
 export class OpenIaService {
@@ -9,7 +8,11 @@ export class OpenIaService {
     return from(orthographyUseCase(prompt));
   }
 
-  checkProsCons(prompt: string) {
+  prosConsDiscusser(prompt: string) {
     return from(prosConsUseCase(prompt));
+  }
+
+  prosConsStreamDiscusser(prompt: string, abortSignal: AbortSignal) {
+    return prosConsStreamUseCase(prompt, abortSignal);
   }
 }

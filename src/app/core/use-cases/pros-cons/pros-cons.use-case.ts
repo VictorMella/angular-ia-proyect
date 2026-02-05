@@ -1,5 +1,5 @@
 import { environment } from '../../../../environments/environment';
-import type { IProsConsResponse, OrthographyResponse } from '../../../interfaces';
+import type { IProsConsResponse } from '../../../interfaces';
 
 export const prosConsUseCase = async (prompt: string): Promise<IProsConsResponse> => {
   try {
