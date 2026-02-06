@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { orthographyUseCase, prosConsStreamUseCase, prosConsUseCase, translateTextUseCase } from '../core/use-cases';
+import {
+  orthographyUseCase,
+  prosConsStreamUseCase,
+  prosConsUseCase,
+  textToAudioUseCase,
+  translateTextUseCase,
+} from '../core/use-cases';
 import { from } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -16,7 +22,10 @@ export class OpenIaService {
     return prosConsStreamUseCase(prompt, abortSignal);
   }
 
-  translateTextUseCase({prompt, lang}: {prompt: string, lang: string}) {
+  translateTextUseCase({ prompt, lang }: { prompt: string; lang: string }) {
     return from(translateTextUseCase(prompt, lang));
+  }
+  textToAudio({ prompt, voice }: { prompt: string; voice: string }) {
+    return from(textToAudioUseCase(prompt, voice));
   }
 }

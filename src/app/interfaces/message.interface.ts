@@ -1,9 +1,10 @@
 export interface IMessage {
-  text: string
+  text: string;
   isGpt: boolean;
   info?: {
     userScore: number;
     errors: string[];
     message: string;
-  }
+  };
+  audioUrl?: string;
 }
