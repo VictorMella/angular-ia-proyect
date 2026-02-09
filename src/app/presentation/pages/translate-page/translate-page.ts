@@ -24,7 +24,6 @@ interface Option {
     ChatMessage,
     MyMessage,
     TypingLoader,
-    TextMessageBox,
     TextMessageBoxSelect,
   ],
   templateUrl: './translate-page.html',
