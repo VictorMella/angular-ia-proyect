@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-text-message-box',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './text-message-box.html'
+  templateUrl: './text-message-box.html',
 })
 export class TextMessageBox {
   placeholder = input.required<string>();
