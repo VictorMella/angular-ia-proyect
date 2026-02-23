@@ -1,13 +1,14 @@
 @if (originalImage()) {
   <div class="fixed flex flex-col items-center top-10 right-10 z-10 fade-in">
     <span>Editando</span>
-    <img [src]="originalImage()" alt="Imagen a editar" class="border rounded-xl h-36 object-contain" />
+    <img
+      [src]="originalImage()"
+      alt="Imagen a editar"
+      class="border rounded-xl h-36 object-contain"
+    />
 
-    <button (click)="generateVariation()" class="btn-primary mt-2">
-      Generar Variación
-    </button>
+    <button (click)="generateVariation()" class="btn-primary mt-2">Generar Variación</button>
   </div>
-
 }
 <div class="chat-container">
   <div class="chat-messages">
@@ -18,7 +19,7 @@
           <app-gtp-message-editable-image
             [text]="message.text"
             [imageInfo]="message.imageInfo!"
-            (onSelectedImage)="handleSelectedImage($event, message.imageInfo!.url)"
+            (onSelectedImage)="handleImageChange($event, message.imageInfo!.url)"
           ></app-gtp-message-editable-image>
         } @else {
           <app-my-message [text]="message.text"></app-my-message>

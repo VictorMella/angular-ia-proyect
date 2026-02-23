@@ -19,7 +19,7 @@ import { GtpMessageEditableImage } from '../../components/chatBubble/gtp-message
     MyMessage,
     TypingLoader,
     TextMessageBox,
-    GtpMessageEditableImage
+    GtpMessageEditableImage,
   ],
   templateUrl: './image-tunning-page.html',
 })
@@ -32,53 +32,58 @@ export default class ImageTunningPage {
         alt: 'Dummy image',
       },
       text: '¡Hola! Soy tu asistente de generación de imágenes. Puedes describirme la imagen que quieres crear, y yo me encargaré de generarla para ti. Por ejemplo, puedes decirme "Quiero una imagen de un gato montando una bicicleta en un parque soleado". ¡Estoy aquí para ayudarte a dar vida a tus ideas visuales!',
-    }
+    },
   ]);
-  public isLoading = signal<boolean>(false);
 
-  public openIaService = inject(OpenIaService);
+  public isLoading = signal(false);
+  public openAiService = inject(OpenIaService);
 
   public originalImage = signal<string | undefined>(undefined);
+  public maksImage = signal<string | undefined>(undefined);
 
-  handleMessage(text: string) {
+  handleMessage(prompt: string) {
     this.isLoading.set(true);
-    this.messages.update((messages) => [...messages, { text: text, isGpt: false }]);
-    this.openIaService
-      .imageGeneration(text)
-      .pipe(finalize(() => this.isLoading.set(false)))
+    this.messages.update((prev) => [...prev, { isGpt: false, text: prompt }]);
+
+    this.openAiService
+      .imageGeneration(prompt, this.originalImage(), this.maksImage())
       .subscribe((resp) => {
+        this.isLoading.set(false);
         if (!resp) return;
-        this.messages.update((messages) => [
-          ...messages,
+
+        this.messages.update((prev) => [
+          ...prev,
           {
-            text: resp?.alt || 'No se pudo generar la imagen.',
             isGpt: true,
+            text: resp.alt,
             imageInfo: resp,
           },
         ]);
       });
   }
 
-  generateVariation(){
+  handleImageChange(newImage: string, originalImage: string) {
+    this.originalImage.set(originalImage);
+    this.maksImage.set(newImage);
+  }
+
+  generateVariation() {
     if (!this.originalImage()) return;
-    this.isLoading.set(true);
-    this.openIaService
-      .imageVariation(this.originalImage()!)
-      .pipe(finalize(() => this.isLoading.set(false)))
-      .subscribe((resp) => {
-        if (!resp) return;
-        this.messages.update((messages) => [
-          ...messages,
-          {
-            text: resp?.alt || 'No se pudo generar la variación de la imagen.',
-            isGpt: true,
-            imageInfo: resp,
-          },
-        ]);
-      });
-  }
 
-  handleSelectedImage(newImage: string, url: string) {
-    this.originalImage.set(newImage);
+    this.isLoading.set(true);
+
+    this.openAiService.imageVariation(this.originalImage()!).subscribe((resp) => {
+      this.isLoading.set(false);
+      if (!resp) return;
+
+      this.messages.update((prev) => [
+        ...prev,
+        {
+          isGpt: true,
+          text: resp.alt,
+          imageInfo: resp,
+        },
+      ]);
+    });
   }
 }

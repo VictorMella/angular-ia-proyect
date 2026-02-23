@@ -7,16 +7,16 @@ interface Image {
   alt: string;
 }
 
-export const imageVariationUseCase = async (
-  originalImage?: string,
-): Promise<GeneratedImage> => {
+export const imageVariationUseCase = async (originalImage?: string): Promise<GeneratedImage> => {
   try {
     const response = await fetch(`${environment.backendApi}/image-variation`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify({ baseImage: originalImage }),
+      body: JSON.stringify({
+        baseImage: originalImage,
+      }),
     });
 
     if (!response.ok) {
