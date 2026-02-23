@@ -16,7 +16,7 @@ export const imageVariationUseCase = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ originalImage }),
+      body: JSON.stringify({ baseImage: originalImage }),
     });
 
     if (!response.ok) {

@@ -15,10 +15,11 @@
       <app-chat-message text="Que imagen deseas editar?"></app-chat-message>
       @for (message of messages(); track $index) {
         @if (message.isGpt) {
-          <app-chat-message
+          <app-gtp-message-editable-image
             [text]="message.text"
-            [imageInfo]="message.imageInfo"
-          ></app-chat-message>
+            [imageInfo]="message.imageInfo!"
+            (onSelectedImage)="handleSelectedImage($event, message.imageInfo!.url)"
+          ></app-gtp-message-editable-image>
         } @else {
           <app-my-message [text]="message.text"></app-my-message>
         }
