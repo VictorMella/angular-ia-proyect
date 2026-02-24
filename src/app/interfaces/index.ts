@@ -3,3 +3,5 @@ export * from './orthography.response'
 export * from './pros-cons.response';
 export * from './translate.interface';
 export * from './audio-to-text.interface';
+export * from './question.response';
+
