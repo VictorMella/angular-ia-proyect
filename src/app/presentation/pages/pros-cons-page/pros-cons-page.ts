@@ -42,7 +42,6 @@ export default class ProsConsPage {
             isGpt: true,
           },
         ]);
-        console.log({ resp });
       });
   }
 }

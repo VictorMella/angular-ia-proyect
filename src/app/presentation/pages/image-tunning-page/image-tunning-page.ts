@@ -24,16 +24,7 @@ import { GtpMessageEditableImage } from '../../components/chatBubble/gtp-message
   templateUrl: './image-tunning-page.html',
 })
 export default class ImageTunningPage {
-  public messages = signal<IMessage[]>([
-    {
-      isGpt: true,
-      imageInfo: {
-        url: 'http://localhost:3000/gpt/image-generation/1771599592120.png',
-        alt: 'Dummy image',
-      },
-      text: '¡Hola! Soy tu asistente de generación de imágenes. Puedes describirme la imagen que quieres crear, y yo me encargaré de generarla para ti. Por ejemplo, puedes decirme "Quiero una imagen de un gato montando una bicicleta en un parque soleado". ¡Estoy aquí para ayudarte a dar vida a tus ideas visuales!',
-    },
-  ]);
+  public messages = signal<IMessage[]>([]);
 
   public isLoading = signal(false);
   public openAiService = inject(OpenIaService);

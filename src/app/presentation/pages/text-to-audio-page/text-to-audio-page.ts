@@ -40,7 +40,6 @@ export default class TextToAudioPage {
     this.messages.update((messages) => [...messages, { text: message, isGpt: false }]);
     this.isLoading.set(true);
     this.openIaService.textToAudio({ prompt, voice: selectedOption }).subscribe(({message, audioUrl}) => {
-      console.log(message, audioUrl)
       this.messages.update((messages) => [
         ...messages,
         {

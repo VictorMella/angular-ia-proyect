@@ -37,16 +37,12 @@ export class GtpMessageEditableImage implements AfterViewInit {
 
   onMouseDown( event: MouseEvent ) {
     if ( !this.canvasElement()?.nativeElement ) return;
-
     this.isDrawing.set(true);
-
     // Obtener las coordenadas del mouse relativo al canvas
     const startX = event.clientX - this.canvasElement()!.nativeElement.getBoundingClientRect().left;
     const startY = event.clientY - this.canvasElement()!.nativeElement.getBoundingClientRect().top;
-
     // Estos valos son mis coords
     this.coords.set({ x:startX, y:startY });
-
   }
 
   onMouseMove( event: MouseEvent ) {
@@ -65,17 +61,10 @@ export class GtpMessageEditableImage implements AfterViewInit {
     const canvasWidth = canvasRef.width;
     const canvasHeight = canvasRef.height;
 
-    //TODO: Limpiar el canvar
     const ctx = canvasRef.getContext('2d')!;
     ctx.clearRect(0,0, canvasWidth, canvasHeight );
     ctx.drawImage( this.originalImage()!, 0,0, canvasWidth, canvasHeight );
-
-
-
-    // ctx.fillRect( this.coords().x, this.coords().y, width, height );
     ctx.clearRect( this.coords().x, this.coords().y, width, height );
-
-
   }
 
    onMouseUp() {
@@ -83,7 +72,6 @@ export class GtpMessageEditableImage implements AfterViewInit {
 
     const canvas = this.canvasElement()!.nativeElement;
     const url = canvas.toDataURL('image/png');
-    console.log(url);
     this.onSelectedImage.emit(url);
 
 
